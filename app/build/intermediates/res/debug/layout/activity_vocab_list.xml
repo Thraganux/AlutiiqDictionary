@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.alutiiqlanguageproject.alutiiqdictionary.VocabListActivity" >
+
+    <LinearLayout
+        android:id="@+id/listBar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editName"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Enter List Name"
+            />
+        <Button
+            android:id="@+id/createList"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/createList"
+            android:textSize="@dimen/text_size"
+             />
+        
+    </LinearLayout>
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/listBar"   
+         >
+        
+    </ListView>
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/Tiff/Downloads/apps/AlutiiqDictionary/app/src/main/res/layout/activity_vocab_list.xml -->

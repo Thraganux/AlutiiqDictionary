@@ -1,0 +1,5 @@
+C:\Users\Tiffany\AndroidstudioProjects\AlutiiqDictionary\app\build\intermediates\classes\release
+C:\Users\Tiffany\AndroidstudioProjects\AlutiiqDictionary\app\build\intermediates\pre-dexed\release\support-annotations-20.0.0-b1e05538a56e9153b8cae9d644e9fbffb79306db.jar
+C:\Users\Tiffany\AndroidstudioProjects\AlutiiqDictionary\app\build\intermediates\pre-dexed\release\internal_impl-20.0.0-ff9e58c482d3407b21a4b63438bcd78e28ff1779.jar
+C:\Users\Tiffany\AndroidstudioProjects\AlutiiqDictionary\app\build\intermediates\pre-dexed\release\classes-bc42fb6509b4e405a6707561fd871811d196feb9.jar
+C:\Users\Tiffany\AndroidstudioProjects\AlutiiqDictionary\app\build\intermediates\pre-dexed\release\classes-8ea42c6a0928ec6d3c00e4796741ed64947ec7e8.jar

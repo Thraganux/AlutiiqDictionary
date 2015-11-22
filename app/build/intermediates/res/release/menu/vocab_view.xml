@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.alutiiqlanguageproject.alutiiqdictionary.VocabView" >
+
+     <item
+        android:id="@+id/deleteList"
+        android:orderInCategory="100"
+        android:title="@string/deleteList"
+        app:showAsAction="ifRoom"/>
+     
+    <item
+        android:id="@+id/toMain"
+        android:orderInCategory="100"
+        android:title="@string/toMain"
+        app:showAsAction="never"/>
+      
+     <item  
+        android:id="@+id/toDictionary"
+        android:orderInCategory="100"
+        android:title="@string/toDictionary"
+        app:showAsAction="never"/>
+      <item
+        android:id="@+id/toVocabLists"
+        android:orderInCategory="100"
+        android:title="@string/toVocabLists"
+       	app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never"/>
+
+</menu>
+<!-- From: file:/C:/Users/Tiffany/AndroidstudioProjects/AlutiiqDictionary/app/src/main/res/menu/vocab_view.xml -->

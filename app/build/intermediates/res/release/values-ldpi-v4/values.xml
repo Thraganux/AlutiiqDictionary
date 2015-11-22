@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/Tiffany/AndroidstudioProjects/AlutiiqDictionary/app/src/main/res/values-ldpi/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+    <dimen name="button_dimens">75dp</dimen>
+    <dimen name="button_size">70dp</dimen>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="radio_text">10dp</dimen>
+    <dimen name="screen_padding">10dp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="title_size">18dp</dimen>
+    <dimen name="title_top_margin">18dp</dimen>
+</resources>

@@ -1,0 +1,5 @@
+C:\Users\Tiff\Downloads\apps\AlutiiqDictionary\app\build\intermediates\classes\debug
+C:\Users\Tiff\Downloads\apps\AlutiiqDictionary\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-4608d2b5d9219f56625935f2fea09eb1d83570f8.jar
+C:\Users\Tiff\Downloads\apps\AlutiiqDictionary\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-0946e9c196ff7f2f5e336781fd83746d36d005d7.jar
+C:\Users\Tiff\Downloads\apps\AlutiiqDictionary\app\build\intermediates\pre-dexed\debug\classes-fe14cc5fd02045bb7ffa5f8eb566078f773378cd.jar
+C:\Users\Tiff\Downloads\apps\AlutiiqDictionary\app\build\intermediates\pre-dexed\debug\classes-e56208078568e0387266b69c4513f2d30a1659fe.jar

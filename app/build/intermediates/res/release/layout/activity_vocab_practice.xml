@@ -1,0 +1,69 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
+    android:layout_width="match_parent"
+   	android:layout_height="match_parent"
+   	android:orientation="vertical"
+    android:background="@drawable/bg"
+    >
+    
+    <TextView 
+        android:id="@+id/vocabwelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vocab Practice"
+        android:layout_alignParentTop="true"
+        />
+
+	<FrameLayout 
+    	android:id="@+id/container"
+   	 	android:layout_width="match_parent"
+   		android:layout_height="match_parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="80dp"
+   		android:layout_gravity="center"
+    	tools:context="com.example.cardflippractice.MainActivity"
+    	tools:ignore="MergeRootFrame" 
+    	android:clickable="true"
+    	android:layout_below="@+id/vocabwelcome"
+
+    	android:layout_centerVertical="true"
+
+    	>
+
+	</FrameLayout>
+	
+	<RelativeLayout
+	    android:id ="@+id/buttonContainer"
+	    android:layout_width="match_parent"
+   		android:layout_height="wrap_content"
+   		android:orientation="horizontal"
+   		android:gravity="end"
+   		android:layout_alignParentBottom="true"
+   		android:layout_centerInParent="true"
+		
+	    >
+	    
+	    <Button 
+	        android:id="@+id/back"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="start"
+	        android:text="Back"
+	        android:layout_alignParentLeft="true"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/forward"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="forward"
+	        android:layout_gravity="end"
+	        android:layout_alignParentRight="true"
+	        />
+	    
+	</RelativeLayout>
+</RelativeLayout><!-- From: file:/C:/Users/Tiffany/AndroidstudioProjects/AlutiiqDictionary/app/src/main/res/layout/activity_vocab_practice.xml -->
