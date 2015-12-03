@@ -19,11 +19,15 @@ import java.util.List;
 
 public class SplashActivity extends ActionBarActivity {
 
+    // Vars to check if database is populated and whether it needs to be populated
     WordsDataSource datasource;
     List<Word> words;
 
+    //Welcome text, changes depending on whether database has already
+    //been populated or not
     TextView tx;
 
+    // for Log/debug reporting
     private static final String LOGTAG = "alutiiqDictionary";
 
     @Override
@@ -31,16 +35,29 @@ public class SplashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //Opens the new datasource in the splash activity context
         datasource = new WordsDataSource(SplashActivity.this);
         datasource.open();
+
+        //loads changeable text view
         tx = (TextView) findViewById(R.id.loadingText);
 
+        //Code for checking to see if the datasource
+        //has been populated yet.  If not
+
         words = datasource.findAll();
+
+        // if database is empty, this clause starts an async thread to load
+        //entries in to database
         if (words.size() == 0) {
+            //async thread to load xml in database
         new AsyncLoadXMLFeed().execute();
 
         }
+        //just opens the splash screen to show logo
+        //and possibly advertisements
         else {
+
             tx.setText("Welcome!");
             Thread background = new Thread() {
                 public void run() {
@@ -94,6 +111,9 @@ public class SplashActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Parses XML in order to populate database
+     */
     private void createData() {
         Log.i(LOGTAG, "creating data");
         WordsPullParser parser = new WordsPullParser();
@@ -106,13 +126,13 @@ public class SplashActivity extends ActionBarActivity {
     private class AsyncLoadXMLFeed extends AsyncTask<Void, Void, Void>{
         @Override
         protected void onPreExecute(){
-            // show your progress dialog
+            // TODO create a progress dialog with a loading bar
 
         }
 
         @Override
         protected Void doInBackground(Void... voids){
-            // load your xml feed asynchronously
+            // load xml feed asynchronously
             words = datasource.findAll();
             if (words.size() == 0) {
                 tx.setText(R.string.welcomeMessage);
@@ -126,8 +146,8 @@ public class SplashActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void params){
-            // dismiss your dialog
-            // launch your News activity
+            // dismiss dialog
+            //launch activity
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
 

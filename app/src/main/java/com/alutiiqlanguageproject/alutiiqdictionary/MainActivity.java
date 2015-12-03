@@ -33,10 +33,12 @@ public class MainActivity extends ActionBarActivity {
 	
 	private boolean isVocabOpen; //checks whether the vocab is open for multi-use activities such as DetailView
 
+	//Datasource for the database
 	WordsDataSource datasource;
 	private String selectedFile;
 	
-	//Request codes
+	//Request codes which are sent between activities
+	//when bundling objects to send to another activity
 	private static final int DICTIONARY_ACTIVITY = 1001;
 	private static final int VOCAB_LISTS_ACTIVITY = 1011;
 	private static final int VOCAB_PRACTICE_ACTIVITY =1101;
@@ -82,10 +84,14 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
+	/**
+	 * This sets all of the onClickListeners
+	 * Possibly just needs to be broken into distinct functions.
+	 */
 	protected void addOnClickListeners() {
 		
-		/*sets the dictionary onClick.  Goes to Dictionary Activity*/
+		/*sets the dictionary button click sensing.  Goes to Dictionary Activity onclick*/
 		toDictionary.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -97,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 		
-		/* sets the vocabList onClick.  Starts Vocab List Activity */
+		/* sets the vocabList button click sensing.  Starts Vocab List Activity on click*/
 		toVocabList.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -110,13 +116,15 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 
-		/* starts the vocab practice activity */
+		/* sets the practice vocab button click sensing. starts the vocab practice  activity on clic*/
 		toVocabPractice.setOnClickListener(new OnClickListener() {
 	
 			
 
 			@Override
 			public void onClick(View v) {
+				//opens an alert which allows the user to choose which
+				//vocab list the user wishes to practice
 				showAlertList();
 				
 				
@@ -125,6 +133,7 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 
+		//sets the settings button on click sensing.  Starts the settings activity on click
         toSettings.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,20 +142,29 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 	}
+
+	/**
+	 *
+	 */
 	
 	public void showAlertList() {
 		Log.i(LOGTAG, "emter list altert main");
+
+		//sets up builder for alert dialog as well as UI of dialogue
 		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 		alert.setTitle("Choose a practice list.");
-		Log.i(LOGTAG, "setting up list");
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, 
 				android.R.layout.select_dialog_singlechoice);
 		Log.i(LOGTAG, "database is adding list");
 		alert.setCancelable(false);
+
+
 		boolean isnull = datasource.findAllList().isEmpty();
 		Log.i(LOGTAG, "database is null? "+ isnull);
 		adapter.addAll(datasource.findAllList());
 		Log.i(LOGTAG, "setting up stuff0");
+
+		//allows user to dismiss the alert dialogue
 		alert.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -155,7 +173,8 @@ public class MainActivity extends ActionBarActivity {
 				
 			}
 		});
-		
+
+		//sets a clickable list that allows the user to choose which list to
 		alert.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			
 			@Override

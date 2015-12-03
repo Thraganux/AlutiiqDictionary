@@ -90,11 +90,13 @@ public class DictionaryActivity extends ListActivity {
 		}
 		isVocabOpen = false;
 
+		//click sensors
         makeActionOverflowMenuShown();
 		addOnWordLongClick ();
 		addOnKeyEnter();
 		addOnRadioClick();
 		addOnFilterSelect();
+		//refreshes display
 		refreshDisplay();
 	}
 
@@ -166,8 +168,10 @@ public class DictionaryActivity extends ListActivity {
 	 */
 	public void addOnKeyEnter(){
 		
-		//sts up edittext search bar
+		//sets up edittext search bar
 		search = (EditText) findViewById(R.id.searchField);
+
+		//sets key listener for key entries in the edittext view
 		search.setOnKeyListener(new OnKeyListener () {
 			
 			
@@ -278,64 +282,91 @@ public class DictionaryActivity extends ListActivity {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
-				
+				//generated required code
 				
 			}
 			
 		});
 		
 	}
+
+	/**
+	 * adds word to chosen vocacb list on a long click
+	 */
 	
 	protected void addOnWordLongClick () {
-		//TODO allow the user to add a word just by long-clicking the word
+
+		//holds the list view and sets on click listener
 		ListView lv = DictionaryActivity.this.getListView();
 		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				//allows a word to pop up
 					showWordAddAlert(words.get(position));
 				return false;
 			}
 		});
 	}
-	
+
+	/**
+	 * pops up a dialog alert, prompting the user to choose a vocab list to add
+	 * to the word
+	 * @param word - word to be added to the vocab list
+	 * @return  Just returns true to show that the function went through
+	 */
 	private boolean showWordAddAlert(final Word word) {
-		
+
+		//sets up dialog with a title, list and a cancel button.
 		AlertDialog.Builder alert = new AlertDialog.Builder(DictionaryActivity.this);
 		alert.setTitle("Which list do you want to add " + word.getEnglish() + " to?");
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(DictionaryActivity.this, 
 				android.R.layout.select_dialog_singlechoice);
 		adapter.addAll(datasource.findAllList());
 		alert.setCancelable(false);
-		
+
+		//sets the button to create a new list, in case the User wnats to add the word
+		//to a new list
 		alert.setPositiveButton("Create New List", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
+
+				//addWordToList actually adds the word to a *NEW* list
 				addWordToList(word);
 				dialog.dismiss();
 			}
 		});
-		
+
+		//sets the list adapter and allows the user to click on already created
+		//lists if the user wants to add to the already created list.
 		alert.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				Log.i(LOGTAG, adapter.getItem(which) + "added in to yar" );
 				selectedFile = adapter.getItem(which);
+				//this adds the word to an already generated list
 				datasource.addWord(DictionaryActivity.this, selectedFile, word);
 				dialog.dismiss();
 			}
 		});
+
+		//shows alert
 		alert.show();
 	
 		return true;
 	}
-		
-	
+
+	/**This shows a dialog interface, allows the user to create a new list in the database, checks the list name
+	 * to make sure that the there are no duplicate names, and then adds the word to the new list.
+	 *
+	 * @param word - This is the word which will be added to the new list
+	 */
 	protected void addWordToList(final Word word) {
+
+		//sets the dialog up with a title, an edit text for the dialogue,
 		AlertDialog.Builder createList = new AlertDialog.Builder(DictionaryActivity.this);
 		createList.setTitle("Name your new list.");
 		final EditText et = new EditText(DictionaryActivity.this);
@@ -345,17 +376,20 @@ public class DictionaryActivity extends ListActivity {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				//if the list name has already been used, the user is prompted to usea  different name
 				if(datasource.findAllList().contains(et.getText().toString())){
 					Toast toast = Toast.makeText(DictionaryActivity.this, 
 							"You already have used this list name! Try again with a unique name.", 
 							Toast.LENGTH_LONG);
 					toast.show();
 				}
+				//makes sure something is written in the name.
 				else if (et.getText().toString().length() != 0) {
 					Log.i(LOGTAG, "String length: " + et.getText().toString().length());
 					datasource.addVocabList(DictionaryActivity.this, et.getText().toString());
 					datasource.addWord(DictionaryActivity.this, et.getText().toString(), word);
 				}
+				//if anything else goes wrong, it asks the user to enter a name
 				else {
 					Toast warning = Toast.makeText(DictionaryActivity.this,
 							"Please enter a name for the list.", Toast.LENGTH_LONG);
@@ -367,10 +401,12 @@ public class DictionaryActivity extends ListActivity {
 		createList.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			
 			@Override
+			//dismisses the dialogue on the cancel button
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 			}
 		});
+
 		createList.show();
 	}
 	
@@ -394,8 +430,11 @@ public class DictionaryActivity extends ListActivity {
 		startActivityForResult(intent, WORD_DETAIL_ACTIVITY);
 	}
 
+	/**
+	 * Makes the menu always shown, so that some users aren't confused by the lack of a menu bar
+	 */
     private void makeActionOverflowMenuShown() {
-        //devices with hardware menu button (e.g. Samsung Note) don't show action overflow menu
+
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
             Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");

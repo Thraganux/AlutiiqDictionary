@@ -6,7 +6,10 @@ import android.util.Log;
 
 public class Word implements Parcelable {
 
-	
+	/*
+	the following values are all taken from the database
+	and used to instantiate the word object
+	 */
 	private long wordId;
 	private String english;
 	private String aluNorth;
@@ -18,9 +21,13 @@ public class Word implements Parcelable {
 	private static final String LOGTAG = "alutiiqDictionary";
 	
 	public Word() {
-		// TODO Auto-generated constructor stub
+
 	}
-	
+
+	/**
+	 * creates the word object from a parcel, which has been sent from another activity
+	 * @param in
+	 */
 	public Word(Parcel in){
 		Log.i(LOGTAG, "Word Parceled");
 		
@@ -33,6 +40,11 @@ public class Word implements Parcelable {
 		comments = in.readString();
 	}
 
+	/****************************
+	 * getters and setters for all the object fields
+	 * @return
+	 * ************************
+	 */
 	public long getWordId() {
 		return wordId;
 	}
@@ -89,12 +101,21 @@ public class Word implements Parcelable {
 		this.comments = comments;
 	}
 
+	/**
+	 * this is a required function
+	 * @return
+	 */
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
+	/**
+	 * parcles the word in order to send it between activities
+	 * @param dest
+	 * @param flags
+	 */
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
@@ -109,7 +130,10 @@ public class Word implements Parcelable {
 		dest.writeString(comments);
 		
 	}
-	
+
+	/**
+	 * creates the parcel
+	 */
 	public static final Creator<Word> CREATOR =
 			new Creator<Word>() {
 

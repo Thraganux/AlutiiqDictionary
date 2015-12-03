@@ -9,26 +9,35 @@ import android.util.Log;
 public class VocabList implements Parcelable {
 	
 	
-	private long listId;
-	private String wordIds;
-	private List<String> wordIdsArray;
+	private long listId; //the number id of the list
+	private String wordIds; //the individual IDs of the words, in comma-separated-String form because of the database
+	private List<String> wordIdsArray; //contains an array of IDs that are finally separated
 	
 	private static final String LOGTAG = "alutiiqDictionary";
 
 	public VocabList() {
-		// TODO Auto-generated constructor stub
+
 	}
-	
+
+	/**
+	 * creates the object from a Parcel, usually upon being sent to a new activity
+	 * @param in - the object sent between activities
+	 */
 	public VocabList(Parcel in) {
 		Log.i(LOGTAG, "list parceled");
 		
-		listId = in.readLong();
-		wordIds = in.readString();
+		listId = in.readLong(); //gets id of the list
+		wordIds = in.readString(); //gets the string
+		//separates the wordIDs into a list of string-numbers
 		for (int i = 0; i < wordIdsArray.size(); i++) {
 			wordIdsArray.add(wordIds.substring(i, i+1));
 		}
 	}
-	
+
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public long getListId() {
 		return listId;
 	}
@@ -58,13 +67,19 @@ public class VocabList implements Parcelable {
 
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
+	/**
+	 * allows the object to be packaged up into a parcel and sent
+	 * between activities
+	 * @param dest
+	 * @param flags
+	 */
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
+
 		Log.i(LOGTAG, "List to Parcel");
 		
 		dest.writeLong(listId);

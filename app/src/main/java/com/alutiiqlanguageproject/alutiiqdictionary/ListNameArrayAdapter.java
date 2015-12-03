@@ -19,9 +19,9 @@ import static com.alutiiqlanguageproject.alutiiqdictionary.R.color.greyTrans;
  * the datasource
  */
 public class ListNameArrayAdapter extends ArrayAdapter<String> {
-	//context of vocablistactivity
+	//context of vocablistactivity is requried for setting views properly
 	Context context;
-	//vocab list names
+	//contains vocab list names
 	List<String> names;
 	private static final String LOGTAG = "alutiiqDict";
 	
@@ -31,14 +31,23 @@ public class ListNameArrayAdapter extends ArrayAdapter<String> {
 		this.context = context;
 		this.names = names;
 	}
-	
+
+    /**
+     * standard override to the getView function in the adaptor class.  It sets up the view of the individual
+     * items on the list.
+     * @param position - position of item
+     * @param convertView
+     * @param parent - parent view
+     * @return
+     */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
 		//creates view for the listitems
         View view = vi.inflate(R.layout.listitem_vocab, null);
 
-
+        //Just some frilly graphics in order to allow the User to see the borders between each
+        // listItem view
         if((position % 2) == 0) {
             view.setBackgroundColor(Color.parseColor("#4DBABABA"));
         }
